@@ -1,0 +1,221 @@
+<meta name='viewport' content='width=device-width, initial-scale=1'/><!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wire & Water BD - Electrical & Plumbing Solutions</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-color: #0284c7; /* Water Blue */
+            --secondary-color: #f59e0b; /* Wire Yellow/Orange */
+            --dark-color: #0f172a;
+            --light-color: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', 'Hind Siliguri', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        /* Header / Navbar */
+        header {
+            background: var(--dark-color);
+            color: white;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span.blue { color: var(--primary-color); }
+        .logo span.yellow { color: var(--secondary-color); }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), url('https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: var(--secondary-color);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #cbd5e1;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--secondary-color);
+            color: var(--dark-color);
+            padding: 12px 30px;
+            font-weight: 700;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #d97706;
+            color: white;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 80px 10%;
+            text-align: center;
+        }
+
+        .services h2 {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--dark-color);
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .service-card i {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card.electrical i {
+            color: var(--secondary-color);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <i class="fa-solid fa-bolt" style="color: var(--secondary-color);"></i>
+            Wire <span class="blue">&</span> <span class="yellow">Water BD</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">হোম</a></li>
+                <li><a href="#services">সেবাসমূহ</a></li>
+                <li><a href="https://youtube.com" target="_blank">ইউটিউব চ্যানেল</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>স্বাগতম <span>Wire & Water BD</span>-এ</h1>
+        <p>প্লাম্বিং এবং ইলেকট্রিক্যাল কাজের সহজ টিপস, টিউটোরিয়াল এবং প্রফেশনাল গাইডলাইন পেতে আমাদের সাথেই থাকুন।</p>
+        <a href="https://youtube.com" target="_blank" class="btn"><i class="fa-brands fa-youtube"></i> আমাদের ইউটিউব ভিজিট করুন</a>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2>আমরা যা নিয়ে কাজ করি</h2>
+        <div class="service-grid">
+            <div class="service-card electrical">
+                <i class="fa-solid fa-plug-circle-bolt"></i>
+                <h3>ইলেকট্রিক্যাল ওয়ার্ক</h3>
+                <p>হাউজ ওয়্যারিং, শর্ট সার্কিট ট্রাবলশুটিং, সুইচ-বোর্ড ফিটিং এবং বিভিন্ন ইলেকট্রিক যন্ত্রপাতির সঠিক ব্যবহার।</p>
+            </div>
+            <div class="service-card">
+                <i class="fa-solid fa-faucet-dripping"></i>
+                <h3>প্লাম্বিং সলিউশন</h3>
+                <p>পিপ ফিটিং, লিক হওয়া ট্যাপ ও শাওয়ার মেরামত, জলের ট্যাংক স্থাপন এবং ড্রেনেজ সিস্টেমের আধুনিক সমাধান।</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Wire & Water BD. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
