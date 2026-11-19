@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wire & Water BD - ইলেকট্রিক্যাল ও প্লাম্বিং ভিডিও হাব</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Hind Siliguri', sans-serif;
+      background-color: #0f172a;
+      color: #f8fafc;
+    }
+    .glass-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <header class="sticky top-0 z-40 bg-slate-900/90 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-500 to-cyan-500 flex items-center justify-center font-bold text-slate-950 text-xl shadow-lg">
+          W&W
+        </div>
+        <div>
+          <h1 class="text-xl font-bold tracking-tight text-white">Wire & Water <span class="text-cyan-400">BD</span></h1>
+          <p class="text-xs text-slate-400">ইলেকট্রিক্যাল ও প্লাম্বিং টেকনিক্যাল গাইড</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="openAddModal()" class="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-semibold px-4 py-2 rounded-lg text-sm flex items-center gap-1.5 transition shadow-md cursor-pointer">
+          <span>+</span> নতুন ভিডিও যোগ করুন
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-12 bg-gradient-to-b from-slate-900 via-slate-900 to-slate-950 border-b border-slate-800/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="inline-block py-1 px-3 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-medium mb-3">
+        অফিসিয়াল ভিডিও পোর্টাল
+      </span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">
+        আধুনিক <span class="text-amber-400">ইলেকট্রিক্যাল</span> ও <span class="text-cyan-400">প্লাম্বিং</span> কাজের সহজ সমাধান
+      </h2>
+      <p class="text-slate-400 max-w-2xl mx-auto text-base sm:text-lg mb-8">
+        বাসাবাড়ি ও ইন্ডাস্ট্রিয়াল ওয়্যারিং, পাইপ ফিটিংস, এবং প্রয়োজনীয় টেকনিক্যাল টিপস ও টিউটোরিয়াল দেখুন এক জায়গায়।
+      </p>
+
+      <!-- Search & Filter Bar -->
+      <div class="max-w-3xl mx-auto flex flex-col sm:flex-row gap-3">
+        <input type="text" id="searchInput" onkeyup="filterVideos()" placeholder="ভিডিওর নাম বা বিষয় লিখে খুঁজুন..." class="flex-1 bg-slate-800/80 border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-400 focus:outline-none focus:border-cyan-500">
+        <div class="flex gap-2 justify-center flex-wrap">
+          <button onclick="setCategory('all')" id="btn-all" class="cat-btn px-4 py-2.5 rounded-xl text-sm font-medium bg-cyan-500 text-slate-950 transition cursor-pointer">সব ভিডিও</button>
+          <button onclick="setCategory('electrical')" id="btn-electrical" class="cat-btn px-4 py-2.5 rounded-xl text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition cursor-pointer">ইলেকট্রিক্যাল</button>
+          <button onclick="setCategory('plumbing')" id="btn-plumbing" class="cat-btn px-4 py-2.5 rounded-xl text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition cursor-pointer">প্লাম্বিং</button>
+          <button onclick="setCategory('tips')" id="btn-tips" class="cat-btn px-4 py-2.5 rounded-xl text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition cursor-pointer">টিপস ও ট্রিকস</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Video Grid -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div id="videoGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Videos will be injected here -->
+    </div>
+    <div id="emptyState" class="hidden text-center py-16">
+      <p class="text-slate-400 text-lg">কোনো ভিডিও পাওয়া যায়নি। নতুন ভিডিও যোগ করতে ওপরের বাটনে ক্লিক করুন।</p>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-950 border-t border-slate-800 py-8 text-center text-slate-400 text-sm">
+    <p class="font-semibold text-white text-base mb-1">Wire & Water BD</p>
+    <p>© ২০২৬ সর্বস্বত্ব সংরক্ষিত | টেকনিক্যাল ও ভোকেশনাল লার্নিং প্ল্যাটফর্ম</p>
+  </footer>
+
+  <!-- Video Player Modal -->
+  <div id="playerModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-4xl w-full overflow-hidden shadow-2xl">
+      <div class="flex items-center justify-between px-5 py-3.5 border-b border-slate-800">
+        <h3 id="modalTitle" class="font-semibold text-lg text-white truncate pr-4">ভিডিও শিরোনাম</h3>
+        <button onclick="closePlayerModal()" class="text-slate-400 hover:text-white text-2xl leading-none cursor-pointer">&times;</button>
+      </div>
+      <div class="aspect-video bg-black w-full">
+        <iframe id="youtubeIframe" class="w-full h-full" src="" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-slate-900">
+        <div>
+          <span id="modalCategory" class="text-xs font-medium px-2.5 py-1 rounded-md bg-amber-500/20 text-amber-400">ক্যাটাগরি</span>
+          <p id="modalDesc" class="text-slate-300 text-sm mt-2"></p>
+        </div>
+        <button onclick="copyCurrentLink()" class="shrink-0 bg-slate-800 hover:bg-slate-700 text-white px-4 py-2 rounded-lg text-sm font-medium border border-slate-700 transition cursor-pointer">
+          🔗 লিংক কপি করুন
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add New Video Modal -->
+  <div id="addModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-md w-full p-6 shadow-2xl">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-xl font-bold text-white">নতুন ইউটিউব ভিডিও যোগ করুন</h3>
+        <button onclick="closeAddModal()" class="text-slate-400 hover:text-white text-2xl leading-none cursor-pointer">&times;</button>
+      </div>
+      <form onsubmit="addNewVideo(event)" class="space-y-4">
+        <div>
+          <label class="block text-sm text-slate-300 mb-1">ভিডিওর বাংলা শিরোনাম *</label>
+          <input type="text" id="vidTitle" required placeholder="যেমন: আধুনিক বাথরুম পাইপ ফিটিংস A to Z" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-cyan-500">
+        </div>
+        <div>
+          <label class="block text-sm text-slate-300 mb-1">ইউটিউব ভিডিও লিংক (URL) *</label>
+          <input type="url" id="vidUrl" required placeholder="https://www.youtube.com/watch?v=..." class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-cyan-500">
+        </div>
+        <div>
+          <label class="block text-sm text-slate-300 mb-1">ক্যাটাগরি নির্বাচন করুন</label>
+          <select id="vidCategory" class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-cyan-500">
+            <option value="electrical">ইলেকট্রিক্যাল (Electrical)</option>
+            <option value="plumbing">প্লাম্বিং (Plumbing)</option>
+            <option value="tips">টিপস ও ট্রিকস (Tips & Tricks)</option>
+          </select>
+        </div>
+        <div>
+          <label class="block text-sm text-slate-300 mb-1">সংক্ষিপ্ত বিবরণ</label>
+          <textarea id="vidDesc" rows="2" placeholder="ভিডিওটি সম্পর্কে দুই-এক লাইন লিখুন..." class="w-full bg-slate-800 border border-slate-700 rounded-lg px-3.5 py-2.5 text-white focus:outline-none focus:border-cyan-500"></textarea>
+        </div>
+        <div class="pt-2 flex justify-end gap-2">
+          <button type="button" onclick="closeAddModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 text-sm cursor-pointer">বাতিল</button>
+          <button type="submit" class="px-5 py-2 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-sm cursor-pointer">ওয়েবসাইটে প্রকাশ করুন</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Default Sample Videos
+    const defaultVideos = [
+      {
+        id: 1,
+        youtubeId: "ysz5S6PUM-U",
+        title: "সম্পূর্ণ বাসাবাড়ির ইলেকট্রিক্যাল ওয়্যারিং ও ডিবি বোর্ড সেটআপ",
+        category: "electrical",
+        desc: "নিরাপদ ও আধুনিক পদ্ধতিতে বাসার মেইন ডিস্ট্রিবিউশন বোর্ড এবং সার্কিট ব্রেকার কানেকশন করার বিস্তারিত নিয়ম।"
+      },
+      {
+        id: 2,
+        youtubeId: "jNQXAC9IVRw",
+        title: "আধুনিক বাথরুম কনসিলড প্লাম্বিং ও পাইপ ফিটিংস গাইড",
+        category: "plumbing",
+        desc: "দেয়ালের ভেতর কীভাবে সঠিক মাপে UPVC এবং CPVC পাইপ ফিটিং করবেন তার প্র্যাকটিক্যাল টিউটোরিয়াল।"
+      },
+      {
+        id: 3,
+        youtubeId: "aqz-KE-bpKQ",
+        title: "ওয়াটার পাম্প অটোমেটিক কন্ট্রোলার কানেকশন (পানির ট্যাংক অটো অফ-অন)",
+        category: "tips",
+        desc: "ট্যাংক পূর্ণ হলে মোটর একা একা বন্ধ হওয়া এবং খালি হলে চালু হওয়ার সহজ সার্কিট কানেকশন।"
+      }
+    ];
+
+    let videos = JSON.parse(localStorage.getItem('wireWaterVideos')) || defaultVideos;
+    let currentCategory = 'all';
+    let activeVideoUrl = '';
+
+    const categoryLabels = {
+      electrical: { text: 'ইলেকট্রিক্যাল', color: 'bg-amber-500/20 text-amber-400 border-amber-500/30' },
+      plumbing: { text: 'প্লাম্বিং', color: 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30' },
+      tips: { text: 'টিপস ও ট্রিকস', color: 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30' }
+    };
+
+    function extractYouTubeID(url) {
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+      const match = url.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : null;
+    }
+
+    function renderVideos() {
+      const grid = document.getElementById('videoGrid');
+      const emptyState = document.getElementById('emptyState');
+      const searchText = document.getElementById('searchInput').value.toLowerCase();
+
+      const filtered = videos.filter(v => {
+        const matchesCat = currentCategory === 'all' || v.category === currentCategory;
+        const matchesSearch = v.title.toLowerCase().includes(searchText) || v.desc.toLowerCase().includes(searchText);
+        return matchesCat && matchesSearch;
+      });
+
+      grid.innerHTML = '';
+      if (filtered.length === 0) {
+        emptyState.classList.remove('hidden');
+        return;
+      }
+      emptyState.classList.add('hidden');
+
+      filtered.forEach(video => {
+        const cat = categoryLabels[video.category] || categoryLabels.tips;
+        const thumbUrl = `https://img.youtube.com/vi/${video.youtubeId}/hqdefault.jpg`;
+
+        const card = document.createElement('div');
+        card.className = 'glass-card rounded-2xl overflow-hidden flex flex-col hover:border-slate-600 transition group';
+        card.innerHTML = `
+          <div class="relative aspect-video bg-slate-800 overflow-hidden cursor-pointer" onclick="playVideo(${video.id})">
+            <img src="${thumbUrl}" alt="${video.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+            <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition flex items-center justify-center">
+              <div class="w-14 h-14 rounded-full bg-amber-500/95 text-slate-950 flex items-center justify-center shadow-lg group-hover:scale-110 transition">
+                <svg class="w-6 h-6 ml-1" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+              </div>
+            </div>
+          </div>
+          <div class="p-5 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2.5">
+                <span class="text-xs font-medium px-2.5 py-0.5 rounded-md border ${cat.color}">${cat.text}</span>
+                <button onclick="deleteVideo(${video.id})" title="ভিডিও মুছুন" class="text-slate-500 hover:text-rose-400 text-xs cursor-pointer">মুছুন</button>
+              </div>
+              <h3 onclick="playVideo(${video.id})" class="font-bold text-lg text-white mb-2 line-clamp-2 hover:text-cyan-400 cursor-pointer transition">${video.title}</h3>
+              <p class="text-slate-400 text-sm line-clamp-2">${video.desc}</p>
+            </div>
+            <button onclick="playVideo(${video.id})" class="mt-4 w-full py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-cyan-400 font-medium text-sm transition cursor-pointer">
+              ▶ ভিডিওটি দেখুন
+            </button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      document.querySelectorAll('.cat-btn').forEach(btn => {
+        btn.className = 'cat-btn px-4 py-2.5 rounded-xl text-sm font-medium bg-slate-800 text-slate-300 hover:bg-slate-700 transition cursor-pointer';
+      });
+      document.getElementById(`btn-${cat}`).className = 'cat-btn px-4 py-2.5 rounded-xl text-sm font-medium bg-cyan-500 text-slate-950 transition cursor-pointer';
+      renderVideos();
+    }
+
+    function filterVideos() {
+      renderVideos();
+    }
+
+    function playVideo(id) {
+      const video = videos.find(v => v.id === id);
+      if (!video) return;
+      const cat = categoryLabels[video.category] || categoryLabels.tips;
+
+      document.getElementById('modalTitle').innerText = video.title;
+      document.getElementById('modalDesc').innerText = video.desc;
+      document.getElementById('modalCategory').innerText = cat.text;
+      document.getElementById('youtubeIframe').src = `https://www.youtube.com/embed/${video.youtubeId}?autoplay=1`;
+      activeVideoUrl = `https://www.youtube.com/watch?v=${video.youtubeId}`;
+
+      document.getElementById('playerModal').classList.remove('hidden');
+    }
+
+    function closePlayerModal() {
+      document.getElementById('youtubeIframe').src = '';
+      document.getElementById('playerModal').classList.add('hidden');
+    }
+
+    function copyCurrentLink() {
+      navigator.clipboard.writeText(activeVideoUrl);
+      alert('ইউটিউব ভিডিও লিংক কপি হয়েছে!');
+    }
+
+    function openAddModal() {
+      document.getElementById('addModal').classList.remove('hidden');
+    }
+
+    function closeAddModal() {
+      document.getElementById('addModal').classList.add('hidden');
+    }
+
+    function addNewVideo(e) {
+      e.preventDefault();
+      const title = document.getElementById('vidTitle').value.trim();
+      const url = document.getElementById('vidUrl').value.trim();
+      const category = document.getElementById('vidCategory').value;
+      const desc = document.getElementById('vidDesc').value.trim() || 'Wire & Water BD চ্যানেলের নতুন ভিডিও।';
+
+      const ytId = extractYouTubeID(url);
+      if (!ytId) {
+        alert('দয়া করে একটি সঠিক ইউটিউব ভিডিও লিংক দিন!');
+        return;
+      }
+
+      const newVid = {
+        id: Date.now(),
+        youtubeId: ytId,
+        title,
+        category,
+        desc
+      };
+
+      videos.unshift(newVid);
+      localStorage.setItem('wireWaterVideos', JSON.stringify(videos));
+      renderVideos();
+      e.target.reset();
+      closeAddModal();
+    }
+
+    function deleteVideo(id) {
+      if (confirm('আপনি কি এই ভিডিওটি তালিকা থেকে মুছে ফেলতে চান?')) {
+        videos = videos.filter(v => v.id !== id);
+        localStorage.setItem('wireWaterVideos', JSON.stringify(videos));
+        renderVideos();
+      }
+    }
+
+    // Initial render
+    renderVideos();
+  </script>
+</body>
+</html>
